@@ -82,7 +82,8 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(UserProfile.Users.COLUMN_PASSWORD, password);
         values.put(UserProfile.Users.COLUMN_GENDER, gender);
 
-        String whereClause = UserProfile.Users.COLUMN_ID + "=?";
+        // Which row to update, based on the title
+        String whereClause = UserProfile.Users.COLUMN_ID + " LIKE ?";
         String[] whereArgs = {String.valueOf(id)};
 
         // Insert the new row, returning the primary key value of the new row
@@ -112,12 +113,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 UserProfile.Users.COLUMN_GENDER
         };
 
-        // Filter results WHERE "title" = 'My Title'
-        //String selection = UserProfile.Users.COLUMN_USERNAME + " = ?";
-        //String[] selectionArgs = {""};
-
         // How you want the results sorted in the resulting Cursor
-        String sortOrder = UserProfile.Users.COLUMN_USERNAME + " ASC";
+        String sortOrder = UserProfile.Users.COLUMN_ID + " ASC";
 
         Cursor cursor = db.query(
                 UserProfile.Users.TABLE_NAME,   // The table to query
@@ -139,5 +136,75 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return user;
+    }
+
+    public List readAllInfor(int id){
+        SQLiteDatabase db = getReadableDatabase();
+
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query.
+        String[] projection = {
+                BaseColumns._ID,
+                UserProfile.Users.COLUMN_USERNAME,
+                UserProfile.Users.COLUMN_DOB,
+                UserProfile.Users.COLUMN_PASSWORD,
+                UserProfile.Users.COLUMN_GENDER
+        };
+
+        String selection = UserProfile.Users.COLUMN_ID + " LIKE ?";
+        String[] selectionArgs = {String.valueOf(id)};
+
+        // How you want the results sorted in the resulting Cursor
+        String sortOrder = UserProfile.Users.COLUMN_ID + " ASC";
+
+        Cursor cursor = db.query(
+                UserProfile.Users.TABLE_NAME,   // The table to query
+                projection, // The array of columns to return (pass null to get all)
+                null,   // The columns for the WHERE clause
+                null,   // The values for the WHERE clause
+                null,   // don't group the rows
+                null,   // don't filter by row groups
+                sortOrder   // The sort order
+        );
+
+        List user = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            int ID = cursor.getInt(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_ID));
+            String USERNAME = cursor.getString(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_USERNAME));
+            String DOB = cursor.getString(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_DOB));
+            String PASSWORD = cursor.getString(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_PASSWORD));
+            String GENDER = cursor.getString(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_GENDER));
+
+            user.add(ID);
+            user.add(USERNAME);
+            user.add(DOB);
+            user.add(PASSWORD);
+            user.add(GENDER);
+        }
+        cursor.close();
+
+        return user;
+    }
+
+    public boolean deleteInfo(int id){
+        SQLiteDatabase db = getReadableDatabase();
+
+        // Define 'where' part of query.
+        String selection = UserProfile.Users.COLUMN_ID + " LIKE ?";
+
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = {String.valueOf(id)};
+
+        // Issue SQL statement.
+        int result = db.delete(UserProfile.Users.TABLE_NAME,
+                                selection,
+                                selectionArgs);
+
+        if (result > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
