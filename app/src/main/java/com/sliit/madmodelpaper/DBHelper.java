@@ -1,4 +1,4 @@
-package com.sliit.madmodelpaper.db;
+package com.sliit.madmodelpaper;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,11 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
-
-import androidx.annotation.Nullable;
-
-import com.sliit.madmodelpaper.db.UserProfile;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,17 +35,17 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_ENTRIES);
         onCreate(db);
     }
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        super.onDowngrade(db, oldVersion, newVersion);
+        onDowngrade(db, oldVersion, newVersion);
     }
 
-    public long addInfo(String username, String dateOfBirth, String password, String gender) {
+    public long addInfo(String username, String password, String dateOfBirth, String gender) {
 
         // Gets the data repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
@@ -59,17 +54,17 @@ public class DBHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(UserProfile.Users.COLUMN_USERNAME, username);
-        values.put(UserProfile.Users.COLUMN_DOB, dateOfBirth);
         values.put(UserProfile.Users.COLUMN_PASSWORD, password);
+        values.put(UserProfile.Users.COLUMN_DOB, dateOfBirth);
         values.put(UserProfile.Users.COLUMN_GENDER, gender);
 
         // Insert the new row, returning the primary key value of the new row
-        long newRowId = db.insert(UserProfile.Users.TABLE_NAME, null, values);
+        long result = db.insert(UserProfile.Users.TABLE_NAME, null, values);
 
-        return newRowId;
+        return result;
     }
 
-    public boolean updateInfor(int id, String username, String dateOfBirth, String password, String gender) {
+    public boolean updateInfor(String id, String username, String password, String dateOfBirth, String gender) {
 
         // Gets the data repository in write mode
         SQLiteDatabase db = this.getWritableDatabase();
@@ -84,13 +79,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
         // Which row to update, based on the title
         String whereClause = UserProfile.Users.COLUMN_ID + " LIKE ?";
-        String[] whereArgs = {String.valueOf(id)};
+        String[] whereArgs = {id};
 
         // Insert the new row, returning the primary key value of the new row
-        int result = db.update(UserProfile.Users.TABLE_NAME,
-                                    values,
-                                    whereClause,
-                                    whereArgs);
+        int result = db.update(UserProfile.Users.TABLE_NAME, values, whereClause, whereArgs);
 
         if(result > 0) {
             return true;
@@ -138,21 +130,22 @@ public class DBHelper extends SQLiteOpenHelper {
         return user;
     }
 
-    public List readAllInfor(int id){
+    public List readAllInfor(String un){
         SQLiteDatabase db = getReadableDatabase();
 
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
         String[] projection = {
                 BaseColumns._ID,
+                UserProfile.Users.COLUMN_ID,
                 UserProfile.Users.COLUMN_USERNAME,
-                UserProfile.Users.COLUMN_DOB,
                 UserProfile.Users.COLUMN_PASSWORD,
+                UserProfile.Users.COLUMN_DOB,
                 UserProfile.Users.COLUMN_GENDER
         };
 
-        String selection = UserProfile.Users.COLUMN_ID + " LIKE ?";
-        String[] selectionArgs = {String.valueOf(id)};
+        String selection = UserProfile.Users.COLUMN_USERNAME + " LIKE ?";
+        String[] selectionArgs = {un};
 
         // How you want the results sorted in the resulting Cursor
         String sortOrder = UserProfile.Users.COLUMN_ID + " ASC";
@@ -160,8 +153,8 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(
                 UserProfile.Users.TABLE_NAME,   // The table to query
                 projection, // The array of columns to return (pass null to get all)
-                null,   // The columns for the WHERE clause
-                null,   // The values for the WHERE clause
+                selection,   // The columns for the WHERE clause
+                selectionArgs,   // The values for the WHERE clause
                 null,   // don't group the rows
                 null,   // don't filter by row groups
                 sortOrder   // The sort order
@@ -171,14 +164,14 @@ public class DBHelper extends SQLiteOpenHelper {
         while(cursor.moveToNext()) {
             int ID = cursor.getInt(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_ID));
             String USERNAME = cursor.getString(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_USERNAME));
-            String DOB = cursor.getString(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_DOB));
             String PASSWORD = cursor.getString(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_PASSWORD));
+            String DOB = cursor.getString(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_DOB));
             String GENDER = cursor.getString(cursor.getColumnIndexOrThrow(UserProfile.Users.COLUMN_GENDER));
 
             user.add(ID);
             user.add(USERNAME);
-            user.add(DOB);
             user.add(PASSWORD);
+            user.add(DOB);
             user.add(GENDER);
         }
         cursor.close();
@@ -186,14 +179,14 @@ public class DBHelper extends SQLiteOpenHelper {
         return user;
     }
 
-    public boolean deleteInfo(int id){
+    public boolean deleteInfo(String id){
         SQLiteDatabase db = getReadableDatabase();
 
         // Define 'where' part of query.
         String selection = UserProfile.Users.COLUMN_ID + " LIKE ?";
 
         // Specify arguments in placeholder order.
-        String[] selectionArgs = {String.valueOf(id)};
+        String[] selectionArgs = {id};
 
         // Issue SQL statement.
         int result = db.delete(UserProfile.Users.TABLE_NAME,

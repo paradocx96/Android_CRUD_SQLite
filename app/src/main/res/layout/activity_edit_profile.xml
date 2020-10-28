@@ -7,7 +7,7 @@
     tools:context=".EditProfile">
 
     <TextView
-        android:id="@+id/textuserName3"
+        android:id="@+id/textuserName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/inputUsername3"
+        android:id="@+id/inputUsername2"
         android:layout_width="145dp"
         android:layout_height="45dp"
         android:layout_marginStart="22dp"
@@ -28,11 +28,11 @@
         android:hint="@string/hint"
         android:inputType="textPersonName"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textuserName3"
-        app:layout_constraintStart_toEndOf="@+id/textuserName3" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textuserName2"
+        app:layout_constraintStart_toEndOf="@+id/textuserName2" />
 
     <TextView
-        android:id="@+id/textdob3"
+        android:id="@+id/textdob2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -41,10 +41,10 @@
         android:textColor="#070707"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textuserName3" />
+        app:layout_constraintTop_toBottomOf="@+id/textuserName2" />
 
     <EditText
-        android:id="@+id/inputDob3"
+        android:id="@+id/inputDob2"
         android:layout_width="145dp"
         android:layout_height="45dp"
         android:layout_marginStart="14dp"
@@ -53,11 +53,11 @@
         android:hint="@string/hint"
         android:inputType="textPersonName"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textdob3"
-        app:layout_constraintStart_toEndOf="@+id/textdob3" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textdob2"
+        app:layout_constraintStart_toEndOf="@+id/textdob2" />
 
     <TextView
-        android:id="@+id/textpassword3"
+        android:id="@+id/textpassword2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -66,10 +66,10 @@
         android:textColor="#070707"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textdob3" />
+        app:layout_constraintTop_toBottomOf="@+id/textdob2" />
 
     <EditText
-        android:id="@+id/inputPassword3"
+        android:id="@+id/inputPassword2"
         android:layout_width="145dp"
         android:layout_height="45dp"
         android:layout_marginStart="34dp"
@@ -78,11 +78,11 @@
         android:hint="@string/hint"
         android:inputType="textPassword"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textpassword3"
-        app:layout_constraintStart_toEndOf="@+id/textpassword3" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textpassword2"
+        app:layout_constraintStart_toEndOf="@+id/textpassword2" />
 
     <TextView
-        android:id="@+id/textgender3"
+        android:id="@+id/textgender2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -91,7 +91,7 @@
         android:textColor="#070707"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textpassword3" />
+        app:layout_constraintTop_toBottomOf="@+id/textpassword2" />
 
     <RadioButton
         android:id="@+id/radioMale2"
@@ -100,8 +100,8 @@
         android:layout_marginStart="57dp"
         android:text="@string/male"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textgender3"
-        app:layout_constraintStart_toEndOf="@+id/textgender3" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textgender2"
+        app:layout_constraintStart_toEndOf="@+id/textgender2" />
 
     <RadioButton
         android:id="@+id/radioFemale2"
@@ -127,10 +127,11 @@
         android:id="@+id/btn_delete"
         android:layout_width="80dp"
         android:layout_height="45dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="44dp"
         android:text="@string/delete"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btn_edit"
-        app:layout_constraintStart_toEndOf="@+id/btn_edit" />
+        app:layout_constraintStart_toEndOf="@+id/btn_edit"
+        app:layout_constraintTop_toBottomOf="@+id/radioFemale2" />
 
     <Button
         android:id="@+id/btn_search"
@@ -138,7 +139,16 @@
         android:layout_height="45dp"
         android:layout_marginStart="19dp"
         android:text="@string/search"
-        app:layout_constraintBaseline_toBaselineOf="@+id/inputUsername3"
-        app:layout_constraintStart_toEndOf="@+id/inputUsername3" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/inputUsername2"
+        app:layout_constraintStart_toEndOf="@+id/inputUsername2" />
+
+    <TextView
+        android:id="@+id/textId2"
+        android:layout_width="48dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toEndOf="@+id/inputDob2"
+        app:layout_constraintTop_toBottomOf="@+id/btn_search" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

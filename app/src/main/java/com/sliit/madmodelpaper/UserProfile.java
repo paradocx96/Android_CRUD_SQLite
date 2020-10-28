@@ -1,12 +1,12 @@
-package com.sliit.madmodelpaper.db;
+package com.sliit.madmodelpaper;
 
 import android.provider.BaseColumns;
 
-public class UserProfile {
+public final class UserProfile {
 
     private UserProfile() {}
 
-    public class Users implements BaseColumns{
+    public static class Users implements BaseColumns {
 
         public static final String TABLE_NAME = "UserInfo";
         public static final String COLUMN_ID = "_ID";
