@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProfile">
+
+    <TextView
+        android:id="@+id/textuserName3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/username"
+        android:textColor="#070707"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/inputUsername3"
+        android:layout_width="145dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="22dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/hint"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textuserName3"
+        app:layout_constraintStart_toEndOf="@+id/textuserName3" />
+
+    <TextView
+        android:id="@+id/textdob3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/dob"
+        android:textColor="#070707"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textuserName3" />
+
+    <EditText
+        android:id="@+id/inputDob3"
+        android:layout_width="145dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="14dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/hint"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textdob3"
+        app:layout_constraintStart_toEndOf="@+id/textdob3" />
+
+    <TextView
+        android:id="@+id/textpassword3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/password"
+        android:textColor="#070707"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textdob3" />
+
+    <EditText
+        android:id="@+id/inputPassword3"
+        android:layout_width="145dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="34dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/hint"
+        android:inputType="textPassword"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textpassword3"
+        app:layout_constraintStart_toEndOf="@+id/textpassword3" />
+
+    <TextView
+        android:id="@+id/textgender3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/gender"
+        android:textColor="#070707"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textpassword3" />
+
+    <RadioButton
+        android:id="@+id/radioMale2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="57dp"
+        android:text="@string/male"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textgender3"
+        app:layout_constraintStart_toEndOf="@+id/textgender3" />
+
+    <RadioButton
+        android:id="@+id/radioFemale2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="@string/female"
+        android:textSize="14sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/radioMale2"
+        app:layout_constraintStart_toEndOf="@+id/radioMale2" />
+
+    <Button
+        android:id="@+id/btn_edit"
+        android:layout_width="80dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="44dp"
+        android:text="@string/edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioMale2" />
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="80dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/delete"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_edit"
+        app:layout_constraintStart_toEndOf="@+id/btn_edit" />
+
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="80dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="19dp"
+        android:text="@string/search"
+        app:layout_constraintBaseline_toBaselineOf="@+id/inputUsername3"
+        app:layout_constraintStart_toEndOf="@+id/inputUsername3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

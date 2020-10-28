@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MAD Model Paper</string>
+    <string name="username">User Name:</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="dob">Date of Birth</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="updateProfile">Update Profile</string>
+    <string name="search">Search</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="hint"></string>
+</resources>
